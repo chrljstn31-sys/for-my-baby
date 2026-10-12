@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>A Special Invitation for Kendra 💕</title>
+  <meta name="description" content="A romantic dinner invitation and digital gift crafted with all my love for Kendra.">
+  <meta name="theme-color" content="#E85D75">
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="A Special Invitation for Kendra 💕">
+  <meta property="og:description" content="I made something special just for Kendra. Open your gift!">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (Emoji Data URI) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+
+  <!-- Google Fonts: Script headings and clean modern body text with fallback fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Fullscreen Canvas for Celebratory Confetti & Ambient Particles -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- Background Ambient Floating Elements Container -->
+  <div class="ambient-decorations" aria-hidden="true" id="ambient-decorations"></div>
+
+  <!-- ===================================================================
+       FLOATING MUSIC CONTROLLER (Bottom-Right)
+       Plays/pauses background music with spinning heart vinyl icon
+       =================================================================== -->
+  <div class="music-player-container">
+    <audio id="bg-music" loop preload="auto">
+      <source src="assets/music/song.mp3" type="audio/mpeg">
+    </audio>
+    <button id="music-toggle-btn" class="music-toggle-btn" aria-label="Toggle romantic background music" title="Toggle Music">
+      <span class="music-disc-icon">
+        <svg class="music-note-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="3" fill="currentColor"/>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="music-mute-badge" id="music-mute-badge">🔇</span>
+      <span class="music-waves" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- ===================================================================
+       SECTION 1: COVER / LANDING (Full Screen Hero)
+       =================================================================== -->
+  <header id="cover-section" class="cover-section">
+    <div class="cover-card glass-panel reveal-hero">
+      <div class="cover-badge">✨ An Invitation For My Favorite Person ✨</div>
+      <h1 class="cover-title" id="cover-title">A Special Invitation for You</h1>
+      <p class="cover-greeting" id="cover-greeting">
+        Hi, <span class="highlight-name" id="hero-partner-name">Kendra</span> 💕<br>
+        I created something special from the bottom of my heart.
+      </p>
+
+      <div class="gift-box-wrapper" id="gift-box-wrapper">
+        <div class="gift-box-icon" aria-hidden="true">🎁</div>
+      </div>
+
+      <button id="unlock-btn" class="btn btn-primary pulse-btn" aria-label="Open your romantic gift">
+        <span>Open Your Gift 🎁</span>
+      </button>
+
+      <p class="cover-hint">Make sure your sound is turned on for the best experience 🎵</p>
+    </div>
+
+    <!-- Soft scroll indicator (appears after unlocking or helps indicate more) -->
+    <div class="scroll-cue" id="scroll-cue" aria-hidden="true">
+      <span>Scroll Down</span>
+      <div class="scroll-arrow">↓</div>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       MAIN CONTENT CONTAINER
+       (Locked & gently blurred until she clicks "Open Your Gift")
+       =================================================================== -->
+  <main id="main-content" class="main-content is-locked" aria-hidden="true">
+
+    <!-- ===================================================================
+         SECTION 2: OUR MEMORIES (3D Flip Card Gallery)
+         =================================================================== -->
+    <section id="memories-section" class="section memories-section">
+      <div class="section-header scroll-reveal">
+        <span class="section-eyebrow">Moments With You</span>
+        <h2 class="section-title">Our Favorite Memories</h2>
+        <div class="ornament-divider"><span>❦</span></div>
+        <p class="section-subtitle">
+          Every second spent by your side is a memory I treasure. Tap any photo to read what was in my heart.
+        </p>
+      </div>
+
+      <!-- 6 Memories Flip Card Grid (Populated dynamically from CONFIG in script.js) -->
+      <div class="memories-grid" id="memories-grid">
+        <!-- Rendered by script.js -->
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 3: REASONS WHY I LOVE YOU (Interactive Card Deck)
+         =================================================================== -->
+    <section id="reasons-section" class="section reasons-section">
+      <div class="section-header scroll-reveal">
+        <span class="section-eyebrow">From The Heart</span>
+        <h2 class="section-title">Reasons Why I Love You</h2>
+        <div class="ornament-divider"><span>❦</span></div>
+        <p class="section-subtitle">
+          Out of an infinite list, here are just a few reasons why you mean the entire world to me.
+        </p>
+      </div>
+
+      <div class="reasons-deck-wrapper scroll-reveal">
+        <!-- Progress Counter -->
+        <div class="reasons-counter" id="reasons-counter">Reason 1 of 9</div>
+
+        <!-- Interactive Stack Container -->
+        <div class="card-stack" id="card-stack" role="region" aria-label="Interactive Reasons Deck">
+          <!-- Stack cards rendered by script.js -->
+        </div>
+
+        <!-- Controls -->
+        <div class="reasons-controls">
+          <button id="reasons-prev-btn" class="btn btn-secondary btn-sm" aria-label="Previous reason">
+            ← Previous
+          </button>
+          <button id="reasons-next-btn" class="btn btn-primary btn-sm" aria-label="Next reason">
+            Next Reason 💖 →
+          </button>
+        </div>
+        <p class="swipe-hint">💡 Tip: You can tap the card or swipe left/right to view the next reason!</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION: SONGS THAT REMIND ME OF YOU (Our Soundtrack)
+         =================================================================== -->
+    <section id="songs-section" class="section songs-section">
+      <div class="section-header scroll-reveal">
+        <span class="section-eyebrow">Our Soundtrack</span>
+        <h2 class="section-title">Songs That Remind Me of You 🎶</h2>
+        <div class="ornament-divider"><span>❦</span></div>
+        <p class="section-subtitle" id="songs-subtitle">
+          Every one of these is you.
+        </p>
+      </div>
+
+      <!-- Songs Cards Grid (Populated dynamically from CONFIG.songs in script.js) -->
+      <div class="songs-grid" id="songs-grid" role="region" aria-label="Songs playlist">
+        <!-- Rendered by script.js -->
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 4: DINNER INVITATION (Formal Luxury Invitation)
+         =================================================================== -->
+    <section id="invitation-section" class="section invitation-section">
+      <div class="invitation-card-container scroll-reveal">
+        <div class="ornamental-frame">
+          <div class="ornamental-corner top-left"></div>
+          <div class="ornamental-corner top-right"></div>
+          <div class="ornamental-corner bottom-left"></div>
+          <div class="ornamental-corner bottom-right"></div>
+
+          <div class="invitation-inner-content">
+            <div class="invitation-crest">⚜️ 💕 ⚜️</div>
+            <p class="invitation-intro">You are cordially invited</p>
+            <h2 class="invitation-heading">To An Unforgettable Dinner</h2>
+            <div class="ornament-divider gold"><span>❦</span></div>
+
+            <p class="invitation-for">Prepared exclusively for my beloved</p>
+            <h3 class="invitation-honoree" id="invite-partner-name">Kendra</h3>
+
+            <!-- Details Block -->
+            <div class="invitation-details-grid">
+              <div class="detail-item">
+                <span class="detail-icon">📅</span>
+                <span class="detail-label">DATE</span>
+                <strong class="detail-value" id="invite-date">October 12</strong>
+              </div>
+              <div class="detail-item">
+                <span class="detail-icon">⏰</span>
+                <span class="detail-label">TIME</span>
+                <strong class="detail-value" id="invite-time">7:00 PM</strong>
+              </div>
+            </div>
+
+            <!-- Personal Message Block -->
+            <blockquote class="personal-message-box" id="invite-personal-message">
+              "From the very first moment we laughed together, you made my world infinitely brighter. I want to celebrate us, celebrate you, and take you out for an evening as magical as you are."
+            </blockquote>
+
+            <div class="invitation-signoff">
+              <span>With all my love,</span>
+              <h4 class="invitation-signature" id="invite-my-name">Tin</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 5: RSVP (Interactive Runaway "No" & Celebration "Yes")
+         =================================================================== -->
+    <section id="rsvp-section" class="section rsvp-section">
+      <div class="rsvp-card glass-panel scroll-reveal">
+        <div class="section-header">
+          <span class="section-eyebrow">A Formal Question</span>
+          <h2 class="section-title">Will You Have Dinner With Me?</h2>
+          <div class="ornament-divider"><span>❦</span></div>
+          <p class="section-subtitle">
+            Please make my day and say yes... (though I didn't leave much room for debate! 😉)
+          </p>
+        </div>
+
+        <!-- RSVP Buttons Playground -->
+        <div class="rsvp-playground" id="rsvp-playground">
+          <button id="rsvp-yes-btn" class="btn btn-yes pulse-heart" aria-label="Yes, I would love to have dinner with you!">
+            Yes, I'd love to! 💖
+          </button>
+          <button id="rsvp-no-btn" class="btn btn-no" aria-label="No button (playfully runs away)">
+            No 🙈
+          </button>
+        </div>
+
+        <!-- Celebration Box (Revealed upon clicking "Yes") -->
+        <div id="rsvp-confirmation-card" class="rsvp-confirmation-card hidden" aria-live="polite">
+          <!-- Floating balloons & hearts decoration container -->
+          <div class="celebration-floaters" aria-hidden="true">
+            <span class="c-floater f1">🎈</span>
+            <span class="c-floater f2">💖</span>
+            <span class="c-floater f3">✨</span>
+            <span class="c-floater f4">🎈</span>
+            <span class="c-floater f5">💕</span>
+            <span class="c-floater f6">🌸</span>
+          </div>
+
+          <!-- Sparkle burst behind heading -->
+          <div class="celebration-sparkle-burst" aria-hidden="true">✨ 💖 ✨</div>
+
+          <!-- Big heading -->
+          <h3 class="confirmation-title celebration-title">She said YES! 🎉</h3>
+
+          <!-- Big beating heart in the center -->
+          <div class="celebration-heart-wrapper">
+            <div class="beating-heart-main" aria-hidden="true">💖</div>
+            <div class="heart-pulse-glow" aria-hidden="true"></div>
+          </div>
+
+          <!-- Fading / typewriter happy message -->
+          <div class="celebration-message-wrapper">
+            <p class="celebration-happy-message" id="celebration-happy-message"></p>
+          </div>
+
+          <!-- Row of bouncing / happy dancing emojis -->
+          <div class="celebration-dancing-emojis" aria-label="Happy dancing emojis">
+            <span class="dance-emoji d1">🥳</span>
+            <span class="dance-emoji d2">💃</span>
+            <span class="dance-emoji d3">🕺</span>
+            <span class="dance-emoji d4">🎉</span>
+            <span class="dance-emoji d5">💖</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 6: DIGITAL GIFT: SCRATCH-OFF LOVE COUPONS
+         =================================================================== -->
+    <section id="coupons-section" class="section coupons-section">
+      <div class="section-header scroll-reveal">
+        <span class="section-eyebrow">Your Digital Gift</span>
+        <h2 class="section-title">Scratch-Off Love Coupons</h2>
+        <div class="ornament-divider"><span>❦</span></div>
+        <p class="section-subtitle">
+          Scratch off the golden seal on each coupon using your finger or mouse to reveal your special treat. Redeemable anytime with zero expiration date! ✨
+        </p>
+      </div>
+
+      <!-- Coupons Grid (Populated dynamically from CONFIG in script.js) -->
+      <div class="coupons-grid" id="coupons-grid">
+        <!-- Rendered by script.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       SECTION 8: FOOTER
+       =================================================================== -->
+  <footer id="footer-section" class="site-footer">
+    <div class="footer-content">
+      <div class="footer-hearts" aria-hidden="true">
+        <span class="float-heart h1">💖</span>
+        <span class="float-heart h2">💕</span>
+        <span class="float-heart h3">✨</span>
+      </div>
+      <p class="footer-made-with" id="footer-credits">
+        Made with all my love for <span class="highlight-name" id="footer-partner-name">Kendra</span> by <span class="highlight-name" id="footer-my-name">Tin</span> 💕
+      </p>
+      <p class="footer-quote">
+        "I love you not only for who you are, but for who I am when I am with you."
+      </p>
+      <div class="footer-copyright">
+        October 12th &amp; Forever • A Special Digital Keepsake
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================
+       STICKY MINI-PLAYER (Appears when any song is playing)
+       =================================================================== -->
+  <div id="songs-mini-player" class="songs-mini-player" aria-label="Music mini-player">
+    <div class="mini-player-container">
+      <div class="mini-player-track-info">
+        <div class="mini-thumb-container">
+          <img id="mini-player-thumb" src="" alt="Album cover" class="mini-player-thumb">
+          <span class="mini-playing-heart" aria-hidden="true">💖</span>
+        </div>
+        <div class="mini-text-meta">
+          <strong id="mini-player-title" class="mini-player-title">Song Title</strong>
+          <span id="mini-player-artist" class="mini-player-artist">Artist</span>
+        </div>
+      </div>
+
+      <div class="mini-player-center">
+        <div class="mini-player-controls">
+          <button id="mini-prev-btn" class="mini-ctrl-btn" aria-label="Play previous song" title="Previous Song">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+          </button>
+          <button id="mini-play-btn" class="mini-ctrl-btn mini-play-main-btn" aria-label="Play or pause current song" title="Play / Pause">
+            <svg id="mini-play-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="mini-pause-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <button id="mini-next-btn" class="mini-ctrl-btn" aria-label="Play next song" title="Next Song">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+          </button>
+        </div>
+
+        <div class="mini-progress-row">
+          <span id="mini-current-time" class="mini-time-text">0:00</span>
+          <div id="mini-progress-bar" class="mini-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0" aria-label="Seek track">
+            <div id="mini-progress-fill" class="mini-progress-fill"></div>
+          </div>
+          <span id="mini-duration-time" class="mini-time-text">0:00</span>
+        </div>
+      </div>
+
+      <button id="mini-close-btn" class="mini-close-btn" aria-label="Close music player" title="Close player">
+        ✕
+      </button>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="js/script.js"></script>
+</body>
+</html>
+
